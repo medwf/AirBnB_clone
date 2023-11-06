@@ -25,11 +25,16 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initialize a new Base object.
         Args:
-            args: list of argumments.
+            args (won't be used): list of argumments.
             kwargs: pass in dictionary as argumment. 
         """
         if kwargs:
-            # add those value to attribute soft __class__.
+            for attr, v in kwargs.items():
+                if attr != "__class__":
+                    setattr(self, attr, v)
+                elif attr in ['created_at', 'updated_at']:
+                    Nv = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, attr, Nv)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
