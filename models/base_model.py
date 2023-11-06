@@ -22,14 +22,18 @@ class BaseModel:
         to_dict: returns a dictionary, change format datetime
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialize a new Base object.
         Args:
-            no args
+            args: list of argumments.
+            kwargs: pass in dictionary as argumment. 
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            # add those value to attribute soft __class__.
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """return string represent name class and id and dict"""

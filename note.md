@@ -5,3 +5,5 @@
     - start reading resources.
     - make repository.
     - add souad to calloboration in repo.
+	- add `**kwargs`  to `__init__` in class BaseModel
+	- add condition  if else ... 
