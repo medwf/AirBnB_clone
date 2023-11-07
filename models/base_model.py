@@ -2,9 +2,11 @@
 """
 import uuid4 `uniquely identify version 4`
 import datetime `give us time and date for update_at and create_at`
+import storage Variable
 """
 from uuid import uuid4
 from datetime import datetime
+import models
 """module BaseModel"""
 
 
@@ -39,6 +41,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """return string represent name class and id and dict"""
@@ -50,12 +53,14 @@ class BaseModel:
     def save(self):
         """updates The updated_at with the current datetime"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """returns a dictionary and change format datetime"""
         To_Dict = dict(self.__dict__)
         To_Dict['__class__'] = self.__class__.__name__
         # change format to %Y-%m-%dT%H:%M:%S.%f (ex:2017-06-14T22:31:03.285259)
-        To_Dict['created_at'] = To_Dict['created_at'].isoformat()
-        To_Dict['updated_at'] = To_Dict['updated_at'].isoformat()
+        if type(To_Dict['created_at']) != str and type(To_Dict['created_at']) != str:
+            To_Dict['created_at'] = To_Dict['created_at'].isoformat()
+            To_Dict['updated_at'] = To_Dict['updated_at'].isoformat()
         return To_Dict

@@ -11,10 +11,14 @@
 - complete task 4.
 
 ## 11/07/2023
+
 - start working on task 5 `make class FileStorage`
+- I was working on filestorage `thanks for complete __init__.py `
 
 ## information about classes
+
 ### BaseModel
+
 ```py
     in class basemodel we can :
 
@@ -31,13 +35,16 @@
         - to_dict : return dictionary
         - save: update attribute updated_at
 ```
-### FilwStogare 
+
+### FilwStogare
+
 ```py
 	class Filestorage:
-	
+
 	privet class attribute.
-		- file_path.
-		- object.
+		- file_path = "file.json"
+		- object = empty dict {}
+
 	public class methods:
 		- all: returns the dictionary __objects
 		- new:  sets in __objects the obj with key <obj class name>.id
