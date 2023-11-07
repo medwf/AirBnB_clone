@@ -10,8 +10,11 @@
 - add condition if else ...
 - complete task 4.
 
-## information about classes
+## 11/07/2023
+- start working on task 5 `make class FileStorage`
 
+## information about classes
+### BaseModel
 ```py
     in class basemodel we can :
 
@@ -27,4 +30,18 @@
             format: [<class name>] (<self.id>) <self.__dict__>
         - to_dict : return dictionary
         - save: update attribute updated_at
+```
+### FilwStogare 
+```py
+	class Filestorage:
+	
+	privet class attribute.
+		- file_path.
+		- object.
+	public class methods:
+		- all: returns the dictionary __objects
+		- new:  sets in __objects the obj with key <obj class name>.id
+		- save: serializes __objects to the JSON file (path: __file_path)
+		- reload: deserializes the JSON file to __objects (only if the JSON file (__file_path) exists ; otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
+
 ```
