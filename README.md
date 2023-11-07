@@ -13,5 +13,10 @@ Each task is linked and will help you to:
     - create all unittests to validate all our classes and storage engine
 
 ## description of the command interpter:
+	- execute console py `./console.py`
+	- command:
+		- EOF : To Exit The program
+		- quit :  To Exit The program
+		- help : to see The command line.
+		- `Enter + empty line ` : shouldn’t execute anything
 
-we just starting reading resources

@@ -14,6 +14,7 @@
 
 - start working on task 5 `make class FileStorage`
 - I was working on filestorage `thanks for complete __init__.py `
+- create basic console `Task 6`
 
 ## information about classes
 
@@ -51,4 +52,18 @@
 		- save: serializes __objects to the JSON file (path: __file_path)
 		- reload: deserializes the JSON file to __objects (only if the JSON file (__file_path) exists ; otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
 
+```
+
+### class HBNBCommand
+
+```py
+	class HBNBCommand
+	
+	public class attribute 
+		- prompte (str): "(hbnb) "
+	
+	public class methods
+		- EOF : exit programe 
+		- quit : exit program
+		- emptyline: shouldn’t execute anything
 ```
