@@ -2,6 +2,7 @@
 """import models"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 """model FileStorage"""
 
@@ -41,11 +42,16 @@ class FileStorage:
             json.dump(new, file)
 
     def reload(self):
-        """Deserializes the JSON file to __objects (only if the JSON file (__file_path)"""
+        """Deserializes the JSON file to __objects
+            (only if the JSON file (__file_path)
+        """
         try:
             with open(FileStorage.__file_path, "r") as file:
                 dict_file = json.load(file)
                 for cl_id, To_obj in dict_file.items():
-                    FileStorage.__objects[cl_id] = BaseModel(**To_obj)
+                    if "BaseModel" in cl_id:
+                        FileStorage.__objects[cl_id] = BaseModel(**To_obj)
+                    elif "User" in cl_id:
+                        FileStorage.__objects[cl_id] = User(**To_obj)
         except Exception:
             pass

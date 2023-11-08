@@ -21,12 +21,12 @@ Each task is linked and will help you to:
     	- help : to see The command line.
     	- `Enter + empty line ` : shouldn’t execute anything
 
-    	- create: to Creates a new instance Usage:  `create BaseModel` it will give you your id.
+    	- create: to Creates a new instance Usage:  `create <name Class>` it will give you your id.
     	- show: to  Prints the string representation of an instance based on the class name and id.
-    			Usage: `show BaseModel <id>`.
+    			Usage: `show <name Class> <id>`.
     	- destroy: Deletes an instance based on the class name and id
-    	    	Usage: `$ destroy BaseModel <id>`
+    	    	Usage: `$ destroy <name Class> <id>`
     	- all: Prints all string representation of all instances based or not on the class name.
-    			Usage: `all BaseModel` or `all`.
+    			Usage: `all <name Class>` or `all`.
     	- update: Updates an instance based on the class name and id by adding or updating attribute
-    			Usage: `update BaseModel <id> email "aibnb@mail.com"`
+    			Usage: `update <name Class> <id> email "aibnb@mail.com"`

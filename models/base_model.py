@@ -28,15 +28,16 @@ class BaseModel:
         """Initialize a new Base object.
         Args:
             args (won't be used): list of argumments.
-            kwargs: pass in dictionary as argumment. 
+            kwargs: pass in dictionary as argumment.
         """
         if kwargs:
             for attr, v in kwargs.items():
-                if attr != "__class__":
-                    setattr(self, attr, v)
-                elif attr in ['created_at', 'updated_at']:
+                # fix error: type of created_at and updated_at most be datetime
+                if attr in ('created_at', 'updated_at'):
                     Nv = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, attr, Nv)
+                elif attr != "__class__":
+                    setattr(self, attr, v)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -60,7 +61,7 @@ class BaseModel:
         To_Dict = dict(self.__dict__)
         To_Dict['__class__'] = self.__class__.__name__
         # change format to %Y-%m-%dT%H:%M:%S.%f (ex:2017-06-14T22:31:03.285259)
-        if type(To_Dict['created_at']) != str and type(To_Dict['created_at']) != str:
+        if type(To_Dict['created_at']) != str:
             To_Dict['created_at'] = To_Dict['created_at'].isoformat()
             To_Dict['updated_at'] = To_Dict['updated_at'].isoformat()
         return To_Dict

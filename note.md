@@ -16,7 +16,13 @@
 - I was working on filestorage `thanks for complete __init__.py `
 - create basic console `Task 6`
 - complete console `Task 7`
-- Create class User that  inherits from BaseModel
+- Create class User that inherits from BaseModel
+- Fix error in class BaseModel updated_at created_at most be datetime not string
+- add documents to class User
+- Update FileStorage to manage correctly serialization and deserialization of User. in `method reload`
+- Update command interpreter (console.py) to allow show, create, destroy, update and all used with User.
+- change in methods command in console `delete for LOOP` no need to check id or name class `method Printerr` do that
+- check pycodestyle
 
 ## information about classes
 
@@ -77,7 +83,9 @@
     	- all: Prints all string representation of all instances based or not on the class name.
     			Usage: `all BaseModel` or `all`.
     	- update: Updates an instance based on the class name and id by adding or updating attribute
-    			Usage: `update BaseModel <id> email "aibnb@mail.com"`
+    			Usage: `update BaseModel <id> email "aibnb@mail.com"
+		- checktype: a function that check type of value.
+		- Printerr: a function that check if samething is missing and print error
 ```
 
 ### class User
@@ -87,5 +95,5 @@
 		email: string - empty string
 		password: string - empty string
 		first_name: string - empty string
-		last_name: string - empty string 
+		last_name: string - empty string
 ```
