@@ -15,6 +15,7 @@
 - start working on task 5 `make class FileStorage`
 - I was working on filestorage `thanks for complete __init__.py `
 - create basic console `Task 6`
+- complete console `Task 7`
 
 ## information about classes
 
@@ -58,12 +59,22 @@
 
 ```py
 	class HBNBCommand
-	
-	public class attribute 
+
+	public class attribute
 		- prompte (str): "(hbnb) "
-	
+
 	public class methods
-		- EOF : exit programe 
+		- EOF : exit programe
 		- quit : exit program
 		- emptyline: shouldn’t execute anything
+
+		- create: to Creates a new instance Usage:  `create BaseModel` it will give you your id.
+    	- show: to  Prints the string representation of an instance based on the class name and id.
+    			Usage: `show BaseModel <id>`.
+    	- destroy: Deletes an instance based on the class name and id
+    	    	Usage: ` destroy BaseModel <id>`
+    	- all: Prints all string representation of all instances based or not on the class name.
+    			Usage: `all BaseModel` or `all`.
+    	- update: Updates an instance based on the class name and id by adding or updating attribute
+    			Usage: `update BaseModel <id> email "aibnb@mail.com"`
 ```

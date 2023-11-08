@@ -13,10 +13,20 @@ Each task is linked and will help you to:
     - create all unittests to validate all our classes and storage engine
 
 ## description of the command interpter:
-	- execute console py `./console.py`
-	- command:
-		- EOF : To Exit The program
-		- quit :  To Exit The program
-		- help : to see The command line.
-		- `Enter + empty line ` : shouldn’t execute anything
 
+    - execute console py `./console.py`
+    - command:
+    	- EOF : To Exit The program
+    	- quit :  To Exit The program
+    	- help : to see The command line.
+    	- `Enter + empty line ` : shouldn’t execute anything
+
+    	- create: to Creates a new instance Usage:  `create BaseModel` it will give you your id.
+    	- show: to  Prints the string representation of an instance based on the class name and id.
+    			Usage: `show BaseModel <id>`.
+    	- destroy: Deletes an instance based on the class name and id
+    	    	Usage: `$ destroy BaseModel <id>`
+    	- all: Prints all string representation of all instances based or not on the class name.
+    			Usage: `all BaseModel` or `all`.
+    	- update: Updates an instance based on the class name and id by adding or updating attribute
+    			Usage: `update BaseModel <id> email "aibnb@mail.com"`
