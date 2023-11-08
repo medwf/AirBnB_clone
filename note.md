@@ -16,6 +16,7 @@
 - I was working on filestorage `thanks for complete __init__.py `
 - create basic console `Task 6`
 - complete console `Task 7`
+- Create class User that  inherits from BaseModel
 
 ## information about classes
 
@@ -77,4 +78,14 @@
     			Usage: `all BaseModel` or `all`.
     	- update: Updates an instance based on the class name and id by adding or updating attribute
     			Usage: `update BaseModel <id> email "aibnb@mail.com"`
+```
+
+### class User
+
+```py
+	Public class attributes:
+		email: string - empty string
+		password: string - empty string
+		first_name: string - empty string
+		last_name: string - empty string 
 ```
