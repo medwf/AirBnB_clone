@@ -11,7 +11,7 @@ import models
 
 
 class BaseModel:
-    """This file represent Class Basemode
+    """This file represent Class BaseModel
     Public instance Attribute:
         id (str): create unique id for new object.
         created_at (datetime): The current datetime when an instance is created
