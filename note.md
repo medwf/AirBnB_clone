@@ -19,10 +19,15 @@
 - Create class User that inherits from BaseModel
 - Fix error in class BaseModel updated_at created_at most be datetime not string
 - add documents to class User
+
+## 11/08/2023
 - Update FileStorage to manage correctly serialization and deserialization of User. in `method reload`
 - Update command interpreter (console.py) to allow show, create, destroy, update and all used with User.
 - change in methods command in console `delete for LOOP` no need to check id or name class `method Printerr` do that
 - check pycodestyle
+
+## 11/09/2023
+- add all classses `State City Amenity Place Review` complete task 8.
 
 ## information about classes
 
@@ -96,4 +101,48 @@
 		password: string - empty string
 		first_name: string - empty string
 		last_name: string - empty string
+```
+
+### class State
+```py 
+	Public class attributes:
+		name: string - empty string
+```
+
+### class City 
+```py 
+	Public class attributes:
+		state_id: string - empty string: it will be the State.id
+		name: string - empty string
+```
+
+
+### class Amenity 
+```py 
+	Public class attributes:
+		name: string - empty string
+```
+
+### class Place 
+```py 
+	Public class attributes:
+		city_id: string - empty string: it will be the City.id
+		user_id: string - empty string: it will be the User.id
+		name: string - empty string
+		description: string - empty string
+		number_rooms: integer - 0
+		number_bathrooms: integer - 0
+		max_guest: integer - 0
+		price_by_night: integer - 0
+		latitude: float - 0.0
+		longitude: float - 0.0
+		amenity_ids: list of string - empty list: it will be the list of Amenity.id later
+```
+
+#### class Review
+```py
+	Public class attributes:
+		place_id: string - empty string: it will be the Place.id
+		user_id: string - empty string: it will be the User.id
+		text: string - empty string 
 ```
