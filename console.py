@@ -8,6 +8,12 @@ import sys
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 """model HBNBCommand"""
 
@@ -35,10 +41,14 @@ class HBNBCommand(cmd.Cmd):
                 and id by adding or updating attribute
                 (save the change into the JSON file). Ex:
                 update BaseModel 1234-1234-1234 email "aibnb@mail.com"
+        CheckType: a function that check type value of attribute
+                in update method
+        PrintErr: a function that handle error and check input
+                from console.
     """
     prompt = ""
     if (sys.stdin.isatty() and sys.stdout.isatty()):
-        prompt = "(hbtn) "
+        prompt = "(hbnb) "
 
     def do_EOF(self, line):
         """Ctrl+d To EXIT The program"""
@@ -62,6 +72,16 @@ class HBNBCommand(cmd.Cmd):
                 new_obj = BaseModel()
             elif args[0] == "User":
                 new_obj = User()
+            elif args[0] == "Place":
+                new_obj = Place()
+            elif args[0] == "State":
+                new_obj = State()
+            elif args[0] == "City":
+                new_obj = City()
+            elif args[0] == "Amenity":
+                new_obj = Amenity()
+            elif args[0] == "Review":
+                new_obj = Review()
             print(new_obj.id)
             new_obj.save()
 
@@ -71,10 +91,6 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split(" ")
         if self.PrintErr(args, True, False):
-            # no need for LOOP we check instance in printerr
-            # for key in storage.all().keys():
-            #     my_id = key.split(".")[-1]
-            #     if args[1] == my_id:
             key = f"{args[0]}.{args[1]}"
             print(storage.all()[key])
 
@@ -82,10 +98,6 @@ class HBNBCommand(cmd.Cmd):
         """Deletes an instance based on the class name and id"""
         args = line.split(" ")
         if self.PrintErr(args, True, False):
-            # no need for LOOP we check instance in printerr
-            # for key in storage.all().keys():
-            #     my_id = key.split(".")[-1]
-            #     if args[1] == my_id:
             key = f"{args[0]}.{args[1]}"
             del storage.all()[key]
             storage.save()
@@ -105,8 +117,6 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] == key.split(".")[0]:
                     ListObj.append(str(storage.all()[key]))
             print(ListObj)
-        # else:
-        #     print("** class doesn't exist **")
 
     def do_update(self, line):
         """Updates an instance based on the class name
@@ -116,10 +126,6 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split(" ")
         if self.PrintErr(args, True, True):
-            # no need for LOOP we check instance it found
-            # for key in storage.all().keys():
-            #     my_id = key.split(".")[-1]
-            #     if args[1] == my_id:
             key = f"{args[0]}.{args[1]}"
             value = self.CheckType(args[3])
             setattr(storage.all()[key], args[2], value)
@@ -128,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
     def CheckType(self, value):
         """method that check type of value [str, int, float]"""
         if "'" in value or '"' in value:
-            Value = str(value).strip("'\"")
+            Value = str(value)[1:-1]
         elif "." in value:
             Value = float(value)
         else:
@@ -140,6 +146,8 @@ class HBNBCommand(cmd.Cmd):
         # print(args)
         NumArg = len(args)
         IsKey = False
+        Classes = {"BaseModel", "User", "Place",
+                   "State", "City", "Amenity", "Review"}
         # check id and name class
         try:
             key = f"{args[0]}.{args[1]}"
@@ -152,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
         if NumArg == 1 and len(args[0]) == 0:
             print("** class name missing **")
             return False
-        elif args[0] not in ("BaseModel", "User"):
+        elif args[0] not in Classes:
             print("** class doesn't exist **")
             return False
         elif check_id and NumArg < 2:

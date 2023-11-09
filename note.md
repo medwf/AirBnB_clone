@@ -21,13 +21,23 @@
 - add documents to class User
 
 ## 11/08/2023
+
 - Update FileStorage to manage correctly serialization and deserialization of User. in `method reload`
 - Update command interpreter (console.py) to allow show, create, destroy, update and all used with User.
 - change in methods command in console `delete for LOOP` no need to check id or name class `method Printerr` do that
 - check pycodestyle
 
 ## 11/09/2023
+
 - add all classses `State City Amenity Place Review` complete task 8.
+- remove the old code which had a comment by #
+- Update FileStorage to manage correctly serialization and deserialization of all our new classes:
+  Place, State, City, Amenity and Review
+- Update your command interpreter (console.py) to allow those actions:
+  show, create, destroy, update and all with all classes created previously.
+- We currently have console version 1.0, `i like that :D`
+- check pycodestyle
+- i will start Unittest
 
 ## information about classes
 
@@ -104,27 +114,30 @@
 ```
 
 ### class State
-```py 
+
+```py
 	Public class attributes:
 		name: string - empty string
 ```
 
-### class City 
-```py 
+### class City
+
+```py
 	Public class attributes:
 		state_id: string - empty string: it will be the State.id
 		name: string - empty string
 ```
 
+### class Amenity
 
-### class Amenity 
-```py 
+```py
 	Public class attributes:
 		name: string - empty string
 ```
 
-### class Place 
-```py 
+### class Place
+
+```py
 	Public class attributes:
 		city_id: string - empty string: it will be the City.id
 		user_id: string - empty string: it will be the User.id
@@ -140,9 +153,10 @@
 ```
 
 #### class Review
+
 ```py
 	Public class attributes:
 		place_id: string - empty string: it will be the Place.id
 		user_id: string - empty string: it will be the User.id
-		text: string - empty string 
+		text: string - empty string
 ```

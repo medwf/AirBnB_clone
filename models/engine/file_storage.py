@@ -2,6 +2,11 @@
 """import models"""
 import json
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models.user import User
 
 """model FileStorage"""
@@ -53,5 +58,15 @@ class FileStorage:
                         FileStorage.__objects[cl_id] = BaseModel(**To_obj)
                     elif "User" in cl_id:
                         FileStorage.__objects[cl_id] = User(**To_obj)
+                    elif "Place" in cl_id:
+                        FileStorage.__objects[cl_id] = Place(**To_obj)
+                    elif "State" in cl_id:
+                        FileStorage.__objects[cl_id] = State(**To_obj)
+                    elif "City" in cl_id:
+                        FileStorage.__objects[cl_id] = City(**To_obj)
+                    elif "Amenity" in cl_id:
+                        FileStorage.__objects[cl_id] = Amenity(**To_obj)
+                    elif "Review" in cl_id:
+                        FileStorage.__objects[cl_id] = Review(**To_obj)
         except Exception:
             pass
