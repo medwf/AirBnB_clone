@@ -12,4 +12,3 @@ class Amenity(BaseModel):
             - name (str): is The name of Amenity
     """
     name = ""
-
