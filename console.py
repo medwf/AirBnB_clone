@@ -177,6 +177,14 @@ class HBNBCommand(cmd.Cmd):
             return False
         return True
 
+    def default(self, line):
+        """This methods execute all instances by class name"""
+        class_name = line.split(".")[0]
+        command = line.split("(")[0].split(".")[1]
+        print(class_name, command)
+        if command == "all":
+            self.do_all(class_name)
+
 
 # Make kay by using args: f"{args[0]}.{args[1]}"
 if __name__ == '__main__':
