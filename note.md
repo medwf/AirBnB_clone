@@ -42,6 +42,7 @@
 ## 11/10/2023
 
 - testing Classes ...
+- add task 11 `<class name>.all()`
 
 ## information about classes
 

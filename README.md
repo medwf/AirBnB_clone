@@ -33,3 +33,7 @@ Each task is linked and will help you to:
   Usage: `all <name Class>` or `all`.
 - update: Updates an instance based on the class name and id by adding or updating attribute
   Usage: `update <name Class> <id> email "aibnb@mail.com"`
+
+console update:
+
+- Usage : <class_name>.all() : print all name insttances of class.
