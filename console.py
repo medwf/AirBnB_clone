@@ -3,6 +3,7 @@
     import sys for non-interactive mode
     import User
 """
+import re
 import cmd
 import sys
 from models.base_model import BaseModel
@@ -177,32 +178,40 @@ class HBNBCommand(cmd.Cmd):
             return False
         return True
 
+    def do_count(self, line):
+        count = 0
+        all_obj = storage.all()
+        for cls_id in all_obj.keys():
+            if line == cls_id.split(".")[0]:
+                count += 1
+        print(count)
+
     def default(self, line):
         """This methods execute all instances by class name"""
-        class_name = line.split(".")[0]
-        command = line.split("(")[0].split(".")[1]
-        _id = line.split("(")[1].split(")")[0]
+        _line = re.findall(r'(\w+)\.(\w+)\((.*)\)', line)
+        if len(_line):
+            cmd = _line[0][1]
+            Cls = f"{_line[0][0]}"
+            _id = f"{_line[0][2][1:-1]}"
 
-        # print(class_name, command)
-        if command == "all":
-            self.do_all(class_name)
-
-        if command == "all":
-            self.do_all(class_name)
-        elif command == "count":
-            count = 0
-            all_obj = storage.all()
-            for cls_id in all_obj.keys():
-                if class_name == cls_id.split(".")[0]:
-                    count += 1
-            print(count)
-        elif command == "show":
-            new_line = f"{class_name} {_id}"
-            # print(new_line)
-            self.do_show(new_line)
-        elif command == "destroy":
-            new_line = f"{class_name} {_id}"
-            self.do_destroy(new_line)
+            if cmd == "all":
+                self.do_all(Cls)
+            elif cmd == "count":
+                self.do_count(Cls)
+            elif cmd == "show":
+                self.do_show(f"{Cls} {_id}")
+            elif cmd == "destroy":
+                self.do_destroy(f"{Cls} {_id}")
+            else:
+                arg = _line[0][2].split(", ")
+                print(len(arg))
+                if len(arg) >= 1:
+                    arg[0] = arg[0][1:-1]
+                if len(arg) >= 2:
+                    arg[1] = arg[1][1:-1]
+                args = " ".join(arg)
+                # print(args)
+                self.do_update(f"{Cls} {args}")
 
 
 # Make kay by using args: f"{args[0]}.{args[1]}"
