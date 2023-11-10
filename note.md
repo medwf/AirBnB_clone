@@ -44,6 +44,7 @@
 - testing Classes ...
 - add task 11 `<class name>.all()`
 - add task 12 `<class name>.count()`
+- adding task 13, 14 `<class name>.show(id)` `<class name>.destroy(id)`
 
 ## information about classes
 

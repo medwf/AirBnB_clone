@@ -36,5 +36,8 @@ Each task is linked and will help you to:
 
 console update:
 
-- Usage : <class_name>.all() : print all name insttances of class.
-- 	<class_name>.count() : to count membre of insttances of class. 
+- Usage :
+  <class_name>.all() : print all name insttances of class.
+  <class_name>.count() : to count membre of insttances of class.
+  <class_name>.show(id) : to show membre of insttance of class
+  <class_name>.destroy() : to destroy membre of insttance of class
