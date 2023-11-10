@@ -39,6 +39,10 @@
 - check pycodestyle
 - i will start Unittest
 
+## 11/10/2023
+
+- testing Classes ...
+
 ## information about classes
 
 ### BaseModel
