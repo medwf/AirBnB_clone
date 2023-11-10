@@ -43,6 +43,7 @@
 
 - testing Classes ...
 - add task 11 `<class name>.all()`
+- add task 12 `<class name>.count()`
 
 ## information about classes
 

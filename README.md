@@ -37,3 +37,4 @@ Each task is linked and will help you to:
 console update:
 
 - Usage : <class_name>.all() : print all name insttances of class.
+- 	<class_name>.count() : to count membre of insttances of class. 

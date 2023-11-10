@@ -147,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
         NumArg = len(args)
         IsKey = False
         Classes = {"BaseModel", "User", "Place",
-                   "State", "City", "Amenity", "Review"}
+                "State", "City", "Amenity", "Review"}
         # check id and name class
         try:
             key = f"{args[0]}.{args[1]}"
@@ -181,10 +181,20 @@ class HBNBCommand(cmd.Cmd):
         """This methods execute all instances by class name"""
         class_name = line.split(".")[0]
         command = line.split("(")[0].split(".")[1]
-        print(class_name, command)
+        
+        # print(class_name, command)
         if command == "all":
             self.do_all(class_name)
 
+        if command == "all":
+             self.do_all(class_name)
+        elif command == "count":
+            count = 0
+            all_obj = storage.all()
+            for cls_id in all_obj.keys():
+                if class_name == cls_id.split(".")[0]:
+                    count += 1
+            print(count)
 
 # Make kay by using args: f"{args[0]}.{args[1]}"
 if __name__ == '__main__':
