@@ -3,7 +3,7 @@ import unittest
 import json
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-import os
+import models
 
 
 class Test_FileStorage(unittest.TestCase):
@@ -21,6 +21,13 @@ class Test_FileStorage(unittest.TestCase):
         self.assertTrue(hasattr(obj, "_FileStorage__file_path"))
         self.assertTrue(hasattr(obj, "_FileStorage__objects"))
 
+        """test"""
+        _file = models.storage._FileStorage__file_path
+        _obj = models.storage._FileStorage__objects
+        self.assertEqual(_file, "file.json")
+        self.assertEqual(type(_file), str)
+        self.assertEqual(type(_obj), dict)
+
         """test has public class methods"""
         self.assertTrue(hasattr(obj, 'new'))
         self.assertTrue(hasattr(obj, "all"))
@@ -31,6 +38,7 @@ class Test_FileStorage(unittest.TestCase):
         """Test the new and all methods"""
         obj = BaseModel()
         obj.save()
+        file = models.storage._FileStorage__file_path
         Cls_id = f"{obj.__class__.__name__}.{obj.id}"
 
         """test key exist"""
@@ -41,6 +49,10 @@ class Test_FileStorage(unittest.TestCase):
 
         """test return all"""
         self.assertEqual(type(self.storage.all()), dict)
+        self.assertNotEqual(self.storage.all(), {})
+
+        """pass none"""
+        self.storage.new(None)
 
     def test_save_and_reload(self):
         """Test the save and reload methods"""
