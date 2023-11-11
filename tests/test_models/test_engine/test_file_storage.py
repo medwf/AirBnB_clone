@@ -4,6 +4,7 @@ import json
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import models
+import os
 
 
 class Test_FileStorage(unittest.TestCase):
@@ -11,6 +12,10 @@ class Test_FileStorage(unittest.TestCase):
 
     def setUp(self):
         """method is called before every test method in the test class."""
+        if os.path.exists("file.json"):
+            with open("file.json", 'w'):
+                pass
+            # This creates an empty file
         self.storage = FileStorage()
 
     def test_hasattr(self):
@@ -52,7 +57,7 @@ class Test_FileStorage(unittest.TestCase):
         self.assertNotEqual(self.storage.all(), {})
 
         """pass none"""
-        self.storage.new(None)
+        self.storage.new(obj)
 
     def test_save_and_reload(self):
         """Test the save and reload methods"""
@@ -80,6 +85,13 @@ class Test_FileStorage(unittest.TestCase):
         self.assertIn(obj2_key, new_storage.all())
         self.assertEqual(new_storage.all()[obj1_key].id, obj1.id)
         self.assertEqual(new_storage.all()[obj2_key].id, obj2.id)
+
+        if os.path.exists("file.json"):
+            with open("file.json", 'w'):
+                pass
+            models.storage.all().clear()
+        models.storage.reload()
+        self.assertEqual(models.storage.all(), {})
 
     def test_pass_arg(self):
         """test pass None and argumment"""
