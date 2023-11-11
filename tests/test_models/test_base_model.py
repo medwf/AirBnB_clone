@@ -107,9 +107,9 @@ class Test_BaseModel_V2(TestCase):
 
     def test_args(self):
         """test pass args no change"""
-        a = BaseModel()
+        a = BaseModel(None)
         dic = a.to_dict()
-        b = BaseModel(dic)
+        b = BaseModel("None", 12)
 
         """test object"""
         self.assertNotEqual(a, b)
