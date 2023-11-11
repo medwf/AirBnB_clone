@@ -39,6 +39,9 @@ class Test_FileStorage(unittest.TestCase):
         """Test obj exist"""
         self.assertEqual(self.storage.all()[Cls_id], obj)
 
+        """test return all"""
+        self.assertEqual(type(self.storage.all()), dict)
+
     def test_save_and_reload(self):
         """Test the save and reload methods"""
         obj = BaseModel()
