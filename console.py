@@ -201,10 +201,32 @@ class HBNBCommand(cmd.Cmd):
             elif cmd == "destroy":
                 self.do_destroy(f"{Cls} {_id}")
             else:
+                if "{" in _line[0][2]:
+                    # print(_line[0][2])
+                    __id = _line[0][2].split(", ")[0]
+                    _dic = re.findall(r'{([^}]+)}', _line[0][2])
+                    list_dic = _dic[0].split(", ")
+                    # print(list_dic)
+                    di = {}
+                    for each in list_dic:
+                        k, v = each.split(": ")
+                        k = self.CheckType(k)
+                        v = self.CheckType(v)
+                        di[k] = v
+                    # print(di)
+                    # print(type(di['a']), type(di['b']), type(di['c']))
+                    for k, v in di.items():
+                        __id = __id.strip('"')
+                        if type(v) == str:
+                            args = f'{Cls} {__id} {k} "{v}"'
+                        else:
+                            args = f'{Cls} {__id} {k} {v}'
+                        self.do_update(args)
+                    return
                 arg = _line[0][2].split(", ")
-                print(len(arg))
                 if len(arg) >= 1:
                     arg[0] = arg[0][1:-1]
+                # print(len(arg))
                 if len(arg) >= 2:
                     arg[1] = arg[1][1:-1]
                 args = " ".join(arg)
