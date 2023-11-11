@@ -69,6 +69,17 @@ class Test_FileStorage(unittest.TestCase):
         self.assertEqual(new_storage.all()[obj1_key].id, obj1.id)
         self.assertEqual(new_storage.all()[obj2_key].id, obj2.id)
 
+    def test_pass_arg(self):
+        """test pass None and argumment"""
+        with self.assertRaises(TypeError):
+            self.storage.save(None)
+        with self.assertRaises(TypeError):
+            self.storage.save("None")
+        with self.assertRaises(TypeError):
+            self.storage.all(None)
+        with self.assertRaises(TypeError):
+            self.storage.all("None")
+
 
 if __name__ == '__main__':
     unittest.main()
