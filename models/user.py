@@ -16,11 +16,3 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize a new Base object.
-        Args:
-            args (won't be used): list of argumments.
-            kwargs: pass in dictionary as argumment.
-        """
-        super().__init__()
