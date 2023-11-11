@@ -14,15 +14,19 @@ class Test_User(TestCase):
     def test_hasattr(self):
         """Test attr and methods"""
         new = User()
-        new.name = "test"
-        new.state_id = "test2"
+        new.email = "test"
+        new.password = "test2"
+        new.first_name = "test2"
+        new.last_name = "test2"
 
         """Test attribute exist"""
         self.assertTrue(hasattr(new, 'id'))
         self.assertTrue(hasattr(new, "created_at"))
         self.assertTrue(hasattr(new, "updated_at"))
-        self.assertTrue(hasattr(new, "name"))
-        self.assertTrue(hasattr(new, "state_id"))
+        self.assertTrue(hasattr(new, "email"))
+        self.assertTrue(hasattr(new, "password"))
+        self.assertTrue(hasattr(new, "first_name"))
+        self.assertTrue(hasattr(new, "last_name"))
 
     def test_methods(self):
         """Test methods exist"""
@@ -38,8 +42,10 @@ class Test_User(TestCase):
         self.assertIsInstance(new.id, str)
         self.assertIsInstance(new.created_at, datetime)
         self.assertIsInstance(new.updated_at, datetime)
-        self.assertIsInstance(new.name, str)
-        self.assertIsInstance(new.state_id, str)
+        self.assertIsInstance(new.email, str)
+        self.assertIsInstance(new.password, str)
+        self.assertIsInstance(new.first_name, str)
+        self.assertIsInstance(new.last_name, str)
 
 
 if __name__ == '__main__':

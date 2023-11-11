@@ -13,6 +13,20 @@ class Test_FileStorage(unittest.TestCase):
         """method is called before every test method in the test class."""
         self.storage = FileStorage()
 
+    def test_hasattr(self):
+        """test has attribute"""
+        obj = FileStorage()
+
+        """test has privet class attribute"""
+        self.assertTrue(hasattr(obj, "_FileStorage__file_path"))
+        self.assertTrue(hasattr(obj, "_FileStorage__objects"))
+
+        """test has public class methods"""
+        self.assertTrue(hasattr(obj, 'new'))
+        self.assertTrue(hasattr(obj, "all"))
+        self.assertTrue(hasattr(obj, "save"))
+        self.assertTrue(hasattr(obj, "reload"))
+
     def test_new_and_all(self):
         """Test the new and all methods"""
         obj = BaseModel()
