@@ -91,6 +91,10 @@ class Test_FileStorage(unittest.TestCase):
             self.storage.all(None)
         with self.assertRaises(TypeError):
             self.storage.all("None")
+        with self.assertRaises(TypeError):
+            self.storage.reload(None)
+        with self.assertRaises(TypeError):
+            self.storage.reload("None")
 
 
 if __name__ == '__main__':
