@@ -45,6 +45,11 @@
 - add task 11 `<class name>.all()`
 - add task 12 `<class name>.count()`
 - adding task 13, 14 `<class name>.show(id)` `<class name>.destroy(id)`
+- update default method
+
+## 11/11/2023
+
+- check all task `start fixe code`
 
 ## information about classes
 

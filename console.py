@@ -47,9 +47,7 @@ class HBNBCommand(cmd.Cmd):
         PrintErr: a function that handle error and check input
                 from console.
     """
-    prompt = ""
-    if (sys.stdin.isatty() and sys.stdout.isatty()):
-        prompt = "(hbnb) "
+    prompt = "(hbnb) "
 
     def do_EOF(self, line):
         """Ctrl+d To EXIT The program"""
