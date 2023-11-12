@@ -113,6 +113,40 @@ class Test_Console(TestCase):
                 Cls_id = f"{cls}.{output}"
                 self.assertIn(Cls_id, storage.all().keys())
 
+    def test_ShowCommand(self):
+        """test show command"""
+        """test Doc"""
+        all_Classes = ["BaseModel", "User", "City",
+                       "Place", "Review", "State", "Amenity"]
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help show")
+            output = f.getvalue()
+            """test help shold print:"""
+            doc = "Prints the string representation of an instance\n"
+            self.assertEqual(doc, output)
+
+            """shold not exit program"""
+            self.assertFalse(HBNBCommand().onecmd("help show"))
+
+        """test ** class name missing **"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("show"))
+            output = f.getvalue()
+            self.assertEqual("** class name missing **\n", output)
+
+        """test ** class doesn't exist **"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("show XXXX"))
+            output = f.getvalue()
+            self.assertEqual("** class doesn't exist **\n", output)
+
+        """** instance id missing **"""
+        for Cls in all_Classes:
+            with patch('sys.stdout', new=StringIO()) as f:
+                self.assertFalse(HBNBCommand().onecmd(f"show {Cls}"))
+                output = f.getvalue()
+                self.assertEqual("** instance id missing **\n", output)
+
 
 if __name__ == "__main__":
     unittest.main()
