@@ -62,9 +62,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel,
-            saves it (to the JSON file) and prints the id
-        """
+        """Creates a new instance of BaseModel, and prints the id"""
         args = line.split(" ")
         if self.PrintErr(args, False, False):
             if args[0] == "BaseModel":
@@ -177,6 +175,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_count(self, line):
+        """print number of instance"""
         count = 0
         all_obj = storage.all()
         for cls_id in all_obj.keys():

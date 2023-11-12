@@ -57,6 +57,7 @@
 
 - try fix error on task 5.
 - start testing my console.
+- help command
 
 ## information about classes
 
