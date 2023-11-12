@@ -61,3 +61,7 @@ class Test_FileStorage(unittest.TestCase):
             saved_data = json.load(file)
         self.assertEqual(saved_data[Cls_id],
                          models.storage.all()[Cls_id].to_dict())
+
+
+if __name__ == '__main__':
+    unittest.main()
