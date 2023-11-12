@@ -61,6 +61,21 @@ class Test_Console(TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.assertTrue(HBNBCommand().onecmd("quit"))
 
+    def test_EOFCommand(self):
+        """test EOF command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help EOF")
+            output = f.getvalue()
+
+            """test help shold print:"""
+            doc = "Ctrl+d To EXIT The program\n"
+            self.assertEqual(doc, output)
+
+            """shold not exit program"""
+            self.assertFalse(HBNBCommand().onecmd("help EOF"))
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.assertTrue(HBNBCommand().onecmd("EOF"))
+
 
 if __name__ == "__main__":
     unittest.main()
