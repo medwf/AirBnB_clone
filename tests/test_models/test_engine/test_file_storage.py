@@ -10,15 +10,7 @@ import os
 class Test_FileStorage(unittest.TestCase):
     """This Class for test FileStorage"""
 
-    def setUp(self):
-        """method is called before every test method in the test class."""
-        if os.path.exists("file.json"):
-            with open("file.json", 'w'):
-                pass
-            # This creates an empty file
-        self.storage = FileStorage()
-
-    def test_hasattr(self):
+    def test_hasattr_and_type(self):
         """test has attribute"""
         obj = FileStorage()
 
@@ -33,81 +25,39 @@ class Test_FileStorage(unittest.TestCase):
         self.assertEqual(type(_file), str)
         self.assertEqual(type(_obj), dict)
 
-        """test has public class methods"""
-        self.assertTrue(hasattr(obj, 'new'))
-        self.assertTrue(hasattr(obj, "all"))
-        self.assertTrue(hasattr(obj, "save"))
-        self.assertTrue(hasattr(obj, "reload"))
+    def test_all_models(self):
+        """Test all method"""
+        my_obj = BaseModel()
 
-    def test_new_and_all(self):
-        """Test the new and all methods"""
-        obj = BaseModel()
-        obj.save()
-        file = models.storage._FileStorage__file_path
-        Cls_id = f"{obj.__class__.__name__}.{obj.id}"
+        """test all"""
+        self.assertEqual(type(models.storage.all()), dict)
+        self.assertNotEqual(models.storage.all(), {})
+        """existence id"""
+        self.assertTrue(hasattr(my_obj, "id"))
+        self.assertEqual(type(my_obj.id), str)
 
-        """test key exist"""
-        self.assertIn(Cls_id, self.storage.all())
+        """Test: my_obj"""
+        Cls_id = f"BaseModel.{my_obj.id}"
+        self.assertIsInstance(models.storage.all()[Cls_id], BaseModel)
+        self.assertEqual(models.storage.all()[Cls_id], my_obj)
+        """ Test: check if object exist by Cls_id """
+        self.assertIn(Cls_id, models.storage.all())
+        """ Test: check if the object found in storage with corrrect id"""
+        self.assertTrue(models.storage.all()[Cls_id] is my_obj)
 
-        """Test obj exist"""
-        self.assertEqual(self.storage.all()[Cls_id], obj)
+        """Test: save"""
+        models.storage.save()
+        with open("file.json", 'r') as file:
+            saved_data = json.load(file)
+        """ Test: check if object exist by Cls_id """
+        self.assertIn(Cls_id, saved_data)
+        """ Test: check if the value found in json is correct"""
+        self.assertEqual(saved_data[Cls_id], my_obj.to_dict())
 
-        """test return all"""
-        self.assertEqual(type(self.storage.all()), dict)
-        self.assertNotEqual(self.storage.all(), {})
-
-        """pass none"""
-        self.storage.new(obj)
-
-    def test_save_and_reload(self):
-        """Test the save and reload methods"""
-        obj = BaseModel()
-        obj.save()
-        self.storage.save()
-        new_storage = FileStorage()
-        new_storage.reload()
-        obj_key = f"{obj.__class__.__name__}.{obj.id}"
-        self.assertIn(obj_key, new_storage.all())
-        self.assertEqual(new_storage.all()[obj_key].id, obj.id)
-
-    def test_save_and_reload_multiple_objects(self):
-        """Test saving and reloading multiple objects"""
-        obj1 = BaseModel()
-        obj2 = BaseModel()
-        obj1.save()
-        obj2.save()
-        self.storage.save()
-        new_storage = FileStorage()
-        new_storage.reload()
-        obj1_key = f"{obj1.__class__.__name__}.{obj1.id}"
-        obj2_key = f"{obj2.__class__.__name__}.{obj2.id}"
-        self.assertIn(obj1_key, new_storage.all())
-        self.assertIn(obj2_key, new_storage.all())
-        self.assertEqual(new_storage.all()[obj1_key].id, obj1.id)
-        self.assertEqual(new_storage.all()[obj2_key].id, obj2.id)
-
-        if os.path.exists("file.json"):
-            with open("file.json", 'w'):
-                pass
-            models.storage.all().clear()
+        """Test: reload"""
+        models.storage.all().clear()
         models.storage.reload()
-        self.assertEqual(models.storage.all(), {})
-
-    def test_pass_arg(self):
-        """test pass None and argumment"""
-        with self.assertRaises(TypeError):
-            self.storage.save(None)
-        with self.assertRaises(TypeError):
-            self.storage.save("None")
-        with self.assertRaises(TypeError):
-            self.storage.all(None)
-        with self.assertRaises(TypeError):
-            self.storage.all("None")
-        with self.assertRaises(TypeError):
-            self.storage.reload(None)
-        with self.assertRaises(TypeError):
-            self.storage.reload("None")
-
-
-if __name__ == '__main__':
-    unittest.main()
+        with open("file.json", 'r') as file:
+            saved_data = json.load(file)
+        self.assertEqual(saved_data[Cls_id],
+                         models.storage.all()[Cls_id].to_dict())

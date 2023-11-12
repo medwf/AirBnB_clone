@@ -50,6 +50,13 @@
 ## 11/11/2023
 
 - check all task `start fixe code`
+- add test models.
+- working on pass dictionary at update command.
+
+## 11/12/2023
+
+- try fix error on task 5.
+- start testing my console.
 
 ## information about classes
 
